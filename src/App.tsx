@@ -14,7 +14,8 @@ class App extends React.Component {
           <Header name="REACT" />
         </header>
         <Description countBy={3} />
-        <Counter value={} />
+        <hr />
+        <Counter />
       </div>
     );
   }
