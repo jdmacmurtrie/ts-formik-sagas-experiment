@@ -1,8 +1,11 @@
 import * as React from "react";
+import { connect } from "react-redux";
+
 import "../App.css";
 import logo from "../logo.svg";
 import Counter from "./Counter";
 import Description from "./Description";
+import Form from "./Form";
 import Header from "./Header";
 
 class App extends React.Component {
@@ -20,9 +23,20 @@ class App extends React.Component {
         <h2>Stateful Redux Component</h2>
         <Counter />
         <hr />
+        <Form />
       </div>
     );
   }
 }
 
-export default App;
+function mapStateToProps(state: { name: string; luckyNumber: number }) {
+  return {
+    luckyNumber: state.luckyNumber,
+    name: state.name
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);

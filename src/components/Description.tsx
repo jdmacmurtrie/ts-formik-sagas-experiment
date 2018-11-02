@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface IProps {
+interface IDescriptionProps {
   countBy?: number;
 }
 
@@ -8,8 +8,8 @@ interface IState {
   count: number;
 }
 
-class Description extends React.Component<IProps, IState> {
-  public static defaultProps: Partial<IProps> = {
+class Description extends React.Component<IDescriptionProps, IState> {
+  public static defaultProps: Partial<IDescriptionProps> = {
     countBy: 1
   };
 

@@ -2,15 +2,14 @@ import * as React from "react";
 import { connect } from "react-redux";
 // import { decrement, increment } from "./actions";
 
-interface IProps {
-  onIncrement: () => void;
-  // onIncrementAsync: () => void;
-  onDecrement: () => void;
+interface ICounterProps {
+  onIncrementAsync: () => void;
+  onDecrementAsync: () => void;
   value: number;
 }
 
-class Counter extends React.Component<IProps> {
-  constructor(props: IProps) {
+class Counter extends React.Component<ICounterProps> {
+  constructor(props: ICounterProps) {
     super(props);
 
     this.handleIncrement = this.handleIncrement.bind(this);
@@ -18,10 +17,10 @@ class Counter extends React.Component<IProps> {
   }
 
   public handleIncrement() {
-    this.props.onIncrement();
+    this.props.onIncrementAsync();
   }
   public handleDecrement() {
-    this.props.onDecrement();
+    this.props.onDecrementAsync();
   }
 
   public render() {
@@ -30,8 +29,12 @@ class Counter extends React.Component<IProps> {
       <div>
         {/* <button onClick={onIncrementAsync}>Increment after 1 second</button>{" "} */}
         <p>Buttons clicked: {value} times</p>
-        <button onClick={this.handleIncrement}>Increment</button>{" "}
-        <button onClick={this.handleDecrement}>Decrement</button>
+        <button onClick={this.handleIncrement}>
+          Increment with short delay
+        </button>{" "}
+        <button onClick={this.handleDecrement}>
+          Decrement with long delay
+        </button>
       </div>
     );
   }
@@ -40,14 +43,14 @@ class Counter extends React.Component<IProps> {
 function mapDispatchToProps(
   dispatch: any
 ): {
-  onIncrement: () => void;
-  onDecrement: () => void;
+  onIncrementAsync: () => void;
+  onDecrementAsync: () => void;
 } {
   return {
-    onIncrement() {
+    onIncrementAsync() {
       dispatch({ type: "INCREMENT", value: 1 });
     },
-    onDecrement() {
+    onDecrementAsync() {
       dispatch({ type: "DECREMENT", value: -1 });
     }
   };

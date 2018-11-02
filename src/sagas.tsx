@@ -1,23 +1,39 @@
+import { delay } from "redux-saga";
 import { put, takeLatest } from "redux-saga/effects";
 
-function* increment() {
+function* incrementAsync() {
+  yield delay(1000);
   yield put({
-    type: "INCREMENT_ONE", // must have different action name from original action
+    type: "INCREMENT_ASYNC", // must have different action name from original action
     value: 1
   });
 }
 
 export function* watchIncrement() {
-  yield takeLatest("INCREMENT", increment);
+  yield takeLatest("INCREMENT", incrementAsync);
 }
 
-function* decrement() {
+function* decrementAsync() {
+  yield delay(1000);
   yield put({
-    type: "DECREMENT_ONE", // must have different action name from original action
+    type: "DECREMENT_ASYNC", // must have different action name from original action
     value: -1
   });
 }
 
 export function* watchDecrement() {
-  yield takeLatest("INCREMENT", decrement);
+  yield takeLatest("DECREMENT", decrementAsync);
 }
+
+// function* decrementAsync() {
+//   yield delay(4000);
+//   yield put({
+//     type: "DECREMENT_ASYNC", // must have different action name from original action
+//     value: -1
+//   });
+// }
+
+// export function* watchDecrement() {
+//   console.log("hitting saga?");
+//   yield takeLatest("DECREMENT", decrementAsync);
+// }

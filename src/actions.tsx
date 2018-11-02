@@ -1,3 +1,5 @@
+// unused (deemed too short to be necessary)
+
 export const INCREMENT = "INCREMENT";
 export const DECREMENT = "DECREMENT";
 
