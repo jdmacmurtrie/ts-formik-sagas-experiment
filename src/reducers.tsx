@@ -2,11 +2,12 @@ const initialState = {
   value: 0
 };
 
-export default function reducer(state: any = initialState, action: any) {
-  console.log("reducer hit", action);
-
+export default function reducer(
+  state: { value: number } = initialState,
+  action: { type: string; value: number }
+) {
   switch (action.type) {
-    case "INCREMENT":
+    case "INCREMENT_ONE":
       return Object.assign({}, state, { value: state.value + action.value });
     case "DECREMENT":
       return Object.assign({}, state, { value: state.value + action.value });

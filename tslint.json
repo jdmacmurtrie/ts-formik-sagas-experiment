@@ -1,10 +1,16 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": [
+    "tslint:recommended",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
   "rules": {
-    "no-console": false //Disable for typescript
+    "no-console": false,
+    "no-debugger": false
   },
   "jsRules": {
-    "no-console": false //Disable for javascript
+    "no-console": false,
+    "no-debugger": false
   },
   "linterOptions": {
     "exclude": [

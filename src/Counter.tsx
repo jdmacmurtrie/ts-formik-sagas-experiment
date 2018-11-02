@@ -10,9 +10,21 @@ interface IProps {
 }
 
 class Counter extends React.Component<IProps> {
-  public render() {
-    console.log("rendering counter");
+  constructor(props: IProps) {
+    super(props);
 
+    this.handleIncrement = this.handleIncrement.bind(this);
+    this.handleDecrement = this.handleDecrement.bind(this);
+  }
+
+  public handleIncrement() {
+    this.props.onIncrement();
+  }
+  public handleDecrement() {
+    this.props.onDecrement();
+  }
+
+  public render() {
     const { value } = this.props;
     return (
       <div>
@@ -24,40 +36,31 @@ class Counter extends React.Component<IProps> {
       </div>
     );
   }
+}
 
-  private handleIncrement() {
-    this.props.onIncrement();
-  }
-  private handleDecrement() {
-    this.props.onDecrement();
-  }
+function mapDispatchToProps(
+  dispatch: any
+): {
+  onIncrement: () => void;
+  onDecrement: () => void;
+} {
+  console.log("dispatch?");
 
-  function mapDispatchToProps(
-    dispatch: any
-    ): {
-      onIncrement: () => void;
-      onDecrement: () => void;
-    } {
-      console.log("dispatch?");
-
-      return {
-        onIncrement() {
-          dispatch({ type: "INCREMENT" });
-        },
-        onDecrement() {
-          dispatch({ type: "DECREMENT" });
-        }
-      };
+  return {
+    onIncrement() {
+      dispatch({ type: "INCREMENT", value: 1 });
+    },
+    onDecrement() {
+      dispatch({ type: "DECREMENT", value: -1 });
     }
+  };
+}
 
-    function mapStateToProps(state: any) {
-      console.log("state?", state);
-
-      return {
-        value: state.value
-      };
-    }
-  }
+function mapStateToProps(state: { value: number }) {
+  return {
+    value: state.value
+  };
+}
 
 export default connect(
   mapStateToProps,
