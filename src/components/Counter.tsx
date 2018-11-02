@@ -29,10 +29,9 @@ class Counter extends React.Component<IProps> {
     return (
       <div>
         {/* <button onClick={onIncrementAsync}>Increment after 1 second</button>{" "} */}
+        <p>Buttons clicked: {value} times</p>
         <button onClick={this.handleIncrement}>Increment</button>{" "}
         <button onClick={this.handleDecrement}>Decrement</button>
-        <hr />
-        <div>Clicked: {value} times</div>
       </div>
     );
   }
@@ -44,8 +43,6 @@ function mapDispatchToProps(
   onIncrement: () => void;
   onDecrement: () => void;
 } {
-  console.log("dispatch?");
-
   return {
     onIncrement() {
       dispatch({ type: "INCREMENT", value: 1 });
